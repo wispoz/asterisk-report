@@ -3,7 +3,6 @@ import ReactDataGrid from 'react-data-grid';
 import PropTypes from 'prop-types';
 import {
     HeaderBar,
-    NavigationMenu,
     ContainerOne,
     ControlPanel,
     AreaChart,
@@ -16,6 +15,7 @@ import {
     DonutChart,
     WorldMap, ChatBox, Conversations, Contacts, Box
 } from 'adminlte-reactjs';
+import NavigationMenu from '../components/NavigationMenu';
 import Users from './users/Users';
 
 const Main = React.createClass({
