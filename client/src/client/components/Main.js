@@ -16,6 +16,7 @@ import {
     DonutChart,
     WorldMap, ChatBox, Conversations, Contacts, Box
 } from 'adminlte-reactjs';
+import Users from './users/Users';
 
 const Main = React.createClass({
     getInitialState() {
@@ -67,24 +68,14 @@ const Main = React.createClass({
         });
     },
     render() {
-        const columns = [{ key: 'id', name: 'ID' }, { key: 'title', name: 'Title' }];
-        const rows = [{ id: 1, title: 'Title 1' }];
-        const rowGetter = rowNumber => rows[rowNumber];
-        return <div >
+
+        return <div>
             <HeaderBar/>
             <NavigationMenu/>
             <div className="content-wrapper">
-                <section className="content">
-                <div className="row">
-                    <ReactDataGrid
-                        columns={columns}
-                        rowGetter={rowGetter}
-                        rowsCount={rows.length}
-                        minHeight={500} />
-                </div>
-                </section>
+                <Users/>
             </div>
         </div>;
     }
 });
-export default Main
+export default Main;

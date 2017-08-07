@@ -1,0 +1,28 @@
+{
+  "ru": {
+    "header": "Добавление пользователя",
+    "add": "Добавить",
+    "delete": "Удалить",
+    "edit": "Обновить",
+    "form": {
+      "username":{
+        "placeholder": "Имя пользователя",
+        "label": "Имя"
+      },
+      "last_name":{
+        "placeholder": "Фамилия пользователя",
+        "label": "Фамилия"
+      },
+      "second_name":{
+        "placeholder": "Отчество пользователя",
+        "label": "Отчество"
+      }
+    }
+  },
+  "en": {
+    "header": "User managment",
+    "add": "Add",
+    "delete": "Delete",
+    "edit": "Reload"
+  }
+}

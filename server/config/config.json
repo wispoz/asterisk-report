@@ -1,0 +1,23 @@
+{
+  "development": {
+    "host": "localhost",
+    "database": "asterisk",
+    "username": "root",
+    "password": "fallout",
+    "dialect": "mysql"
+  },
+  "test": {
+    "host": "localhost",
+    "database": "asterisk",
+    "username": "root",
+    "password": "fallout",
+    "dialect": "mysql"
+  },
+  "production": {
+    "host": "localhost",
+    "database": "asterisk",
+    "username": "root",
+    "password": "fallout",
+    "dialect": "mysql"
+  }
+}
