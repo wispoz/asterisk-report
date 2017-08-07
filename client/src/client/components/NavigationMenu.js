@@ -1,5 +1,7 @@
 import React from 'react';
-
+import {
+    Link
+} from 'react-router-dom';
 class NavigationMenu extends React.Component {
     render() {
         return <aside className="main-sidebar">
@@ -25,6 +27,8 @@ class NavigationMenu extends React.Component {
                 </form>
                 <ul className="sidebar-menu">
                     <li className="header">LABELS</li>
+
+                    <li><Link to="users">Пользователи</Link></li>
                     <li><a href="#"><i className="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
                     <li><a href="#"><i className="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
                     <li><a href="#"><i className="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>

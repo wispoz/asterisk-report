@@ -12,7 +12,8 @@ let _isLoading = true;
 function formatUser(user) {
     return {
         id: user.id,
-        username: user.username
+        username: user.username,
+        last_name: user.last_name
     };
 }
 

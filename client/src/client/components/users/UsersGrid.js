@@ -8,6 +8,7 @@ import createReactClass from 'create-react-class';
 import i18n from './i18n.json';
 import Masonry from 'react-masonry-component';
 import User from './User';
+
 function getStateFromFlux() {
     return {
         isLoading: UserStore.isLoading(),
@@ -16,7 +17,7 @@ function getStateFromFlux() {
 }
 
 
-const Users = createReactClass({
+const UsersGrid = createReactClass({
     getInitialState() {
         return getStateFromFlux();
     },
@@ -54,12 +55,14 @@ const Users = createReactClass({
                 theme="box-default"
                 headerMarkup={<i className="fa fa-user"></i>}>
                 <Masonry options={masonryOptions}>
-                    {users.map(user=>
-                        <User 	theme = 'bg-aqua'
-                                        displayName = 'John Roe'
-                                        description = 'Founder & CEO'
-                                        displayPicture = '../dist/img/user1-128x128.jpg'
-                                        coverPicture = '../dist/img/photo4.png'></User>
+                    {users.map(user =>
+                        <User theme='bg-aqua'
+                              key={user.id}
+                              user={user}
+                              displayName='John Roe'
+                              description='Founder & CEO'
+                              displayPicture='../dist/img/user1-128x128.jpg'
+                              coverPicture='../dist/img/photo4.png'></User>
                     )}
                 </Masonry>
             </Box>
@@ -69,4 +72,4 @@ const Users = createReactClass({
         this.setState(getStateFromFlux());
     }
 });
-export default Users;
+export default UsersGrid;

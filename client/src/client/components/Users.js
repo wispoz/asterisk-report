@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ReactDataGrid from 'react-data-grid';
 import PropTypes from 'prop-types';
 import {
     HeaderBar,
@@ -16,9 +15,9 @@ import {
     WorldMap, ChatBox, Conversations, Contacts, Box
 } from 'adminlte-reactjs';
 import NavigationMenu from '../components/NavigationMenu';
-import Users from './users/Users';
+import UsersGrid from './users/UsersGrid';
 
-const Main = React.createClass({
+const Users = React.createClass({
     getInitialState() {
         return {
             chatBoxOptions: {
@@ -73,9 +72,9 @@ const Main = React.createClass({
             <HeaderBar/>
             <NavigationMenu/>
             <div className="content-wrapper">
-                <Users/>
+                <UsersGrid/>
             </div>
         </div>;
     }
 });
-export default Main;
+export default Users;

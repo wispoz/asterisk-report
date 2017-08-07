@@ -1,15 +1,23 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import Main from './client/components/Main';
+import Users from './client/components/Users';
+import Main from './client/pages/Main';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
 import './App.css';
-import PropTypes from 'prop-types';
-
 import AppDispatcher from './client/dispatcher/AppDispatcher';
 
 class App extends Component {
     render() {
         return (
-                <Main/>
+            <Router>
+                <div>
+                    <Route exact path="/" component={Main}/>
+                    <Route exact path="/users" component={Users}/>
+                </div>
+            </Router>
         );
     }
 }
