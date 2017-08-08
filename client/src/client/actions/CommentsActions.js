@@ -1,43 +1,43 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import Constants from '../constants/AppConstants';
 
-import api from '../repositories/UserRepository';
+import api from '../repositories/CommentsRepository';
 
-const UsersActions = {
-    loadUsers() {
+const CommentsActions = {
+    loadComments() {
         AppDispatcher.dispatch({
-            type: Constants.LOAD_USERS_REQUEST
+            type: Constants.LOAD_COMMENTS_REQUEST
         });
 
-        api.listUsers()
-            .then(({ data }) =>
+        api.listComments()
+            .then(({data}) =>
                 AppDispatcher.dispatch({
-                    type: Constants.LOAD_USERS_SUCCESS,
-                    users: data
+                    type: Constants.LOAD_COMMENTS_SUCCESS,
+                    comments: data
                 })
             )
             .catch(err =>
                 AppDispatcher.dispatch({
-                    type: Constants.LOAD_USERS_FAIL,
+                    type: Constants.LOAD_COMMENTS_FAIL,
                     error: err
                 })
             );
     },
 
-    createUser(user) {
-        api.createUser(user)
+    createComment(comment) {
+        api.createComment(comment)
             .then(() =>
-                this.loadUsers()
+                this.loadComments()
             )
             .catch(err =>
                 console.error(err)
             );
     },
 
-    deleteUser(userId) {
-        api.deleteUser(userId)
+    deleteComment(commentId) {
+        api.deleteNote(commentId)
             .then(() =>
-                this.loadUsers()
+                this.loadComments()
             )
             .catch(err =>
                 console.error(err)
@@ -45,4 +45,4 @@ const UsersActions = {
     }
 };
 
-export default UsersActions;
+export default CommentsActions;

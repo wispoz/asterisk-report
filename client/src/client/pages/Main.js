@@ -1,28 +1,15 @@
 import React, {Component} from 'react';
-import {
-    HeaderBar,
-    ContainerOne,
-    ControlPanel,
-    AreaChart,
-    ContainerTwo,
-    ContainerThree,
-    ContainerFour,
-    ContainerFive,
-    ContainerSix,
-    ContainerSeven,
-    DonutChart,
-    WorldMap, ChatBox, Conversations, Contacts, Box
-} from 'adminlte-reactjs';
-import NavigationMenu from '../components/NavigationMenu';
+import {HeaderBar} from 'adminlte-reactjs';
+import Layout from '../pages/Layout';
+import Filter from '../components/dashboard/Filter';
+
 class Main extends React.Component {
-    render(){
-        return <div>
-            <HeaderBar/>
-            <NavigationMenu/>
-            <div className="content-wrapper">
-                <h1>test</h1>
-            </div>
-        </div>
+    render() {
+        return <Layout>
+            <section className="content">
+                <Filter/>
+            </section>
+        </Layout>;
     }
 }
 

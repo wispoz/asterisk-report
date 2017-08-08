@@ -14,17 +14,16 @@ import {
     WorldMap, ChatBox, Conversations, Contacts, Box
 } from 'adminlte-reactjs';
 import NavigationMenu from '../components/NavigationMenu';
-import UsersGrid from './users/UsersGrid';
-
-const Users = React.createClass({
+class Comments extends React.Component {
     render() {
-        return <div className="row">
+        return <div>
             <HeaderBar/>
             <NavigationMenu/>
             <div className="content-wrapper">
-                <UsersGrid/>
+                {this.props.children}
             </div>
         </div>;
     }
-});
-export default Users;
+}
+
+export default Comments;

@@ -48,8 +48,8 @@ const UsersGrid = createReactClass({
         };
         return <section className="content">
 
-            <UserForm onUserAdd={this.handleUserAdd}/>
-            <Box
+            <div className="row"><UserForm onUserAdd={this.handleUserAdd}/></div>
+            <div className="row"> <Box
                 border={true}
                 width="12"
                 theme="box-default"
@@ -65,7 +65,7 @@ const UsersGrid = createReactClass({
                               coverPicture='../dist/img/photo4.png'></User>
                     )}
                 </Masonry>
-            </Box>
+            </Box></div>
         </section>;
     },
     _onChange() {
