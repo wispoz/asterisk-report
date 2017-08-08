@@ -61,7 +61,7 @@ const UserForm = React.createClass({
                                 type="text" className="form-control input-sm"
                                 value={this.state.last_name}
                                 onChange={this.handleLastNameChange}
-                                placeholder={i18N.form.username.placeholder}
+                                placeholder={i18N.form.last_name.placeholder}
                             />
                         </div>
                         <div className="col-sm-2">
@@ -69,7 +69,7 @@ const UserForm = React.createClass({
                                 type="text" className="form-control input-sm"
                                 value={this.state.phone}
                                 onChange={this.handlePhoneChange}
-                                placeholder={i18N.form.username.placeholder}
+                                placeholder={i18N.form.phone.placeholder}
                             />
                         </div>
                         <div className="col-sm-3">

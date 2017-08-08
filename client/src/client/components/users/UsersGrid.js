@@ -49,7 +49,7 @@ const UsersGrid = createReactClass({
         return <section className="content">
 
             <div className="row"><UserForm onUserAdd={this.handleUserAdd}/></div>
-            <div className="row"> <Box
+            <div className="row"><Box
                 border={true}
                 width="12"
                 theme="box-default"

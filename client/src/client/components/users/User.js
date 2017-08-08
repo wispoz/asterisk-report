@@ -1,6 +1,7 @@
 import React from 'react';
 import './User.css';
 import UsersActions from '../../actions/UsersActions';
+import {ProfileInfoList} from 'adminlte-reactjs';
 
 class User extends React.Component {
     constructor(props) {
@@ -16,7 +17,6 @@ class User extends React.Component {
 
     onDelete() {
         const {user} = this.props;
-        console.log(user);
         UsersActions.deleteUser(user.id);
     }
 
@@ -34,6 +34,20 @@ class User extends React.Component {
             };
         }
         const {user} = this.props;
+        const info = [
+            {
+                description: 'Телефон',
+                stats: user.phone,
+                link: '#',
+                badgeTheme: 'bg-blue'
+            },
+            {
+                description: 'Звонков',
+                stats: 5,
+                link: '#',
+                badgeTheme: 'bg-aqua'
+            }
+        ];
         return (
             <div className={"User col-md-4"}>
                 <span className='User__del-icon' onClick={this.onDelete.bind(this)}> × </span>
@@ -46,7 +60,7 @@ class User extends React.Component {
                         <h5 className="widget-user-desc">{user.last_name}</h5>
                     </div>
                     <div className={"box-footer " + footerPadding}>
-                        {this.props.children}
+                        <ProfileInfoList list={info}/>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,7 @@ const UsersActions = {
         });
 
         api.listUsers()
-            .then(({ data }) =>
+            .then(({data}) =>
                 AppDispatcher.dispatch({
                     type: Constants.LOAD_USERS_SUCCESS,
                     users: data

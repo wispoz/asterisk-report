@@ -14,6 +14,7 @@ import {
     WorldMap, ChatBox, Conversations, Contacts, Box
 } from 'adminlte-reactjs';
 import NavigationMenu from '../components/NavigationMenu';
+
 class Comments extends React.Component {
     render() {
         return <div>

@@ -5,17 +5,21 @@
     "delete": "Удалить",
     "edit": "Обновить",
     "form": {
-      "username":{
+      "username": {
         "placeholder": "Имя пользователя",
         "label": "Имя"
       },
-      "last_name":{
+      "last_name": {
         "placeholder": "Фамилия пользователя",
         "label": "Фамилия"
       },
-      "second_name":{
+      "second_name": {
         "placeholder": "Отчество пользователя",
         "label": "Отчество"
+      },
+      "phone": {
+        "placeholder": "Телефон",
+        "label": "Телефон"
       }
     }
   },

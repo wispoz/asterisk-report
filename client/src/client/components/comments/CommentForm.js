@@ -8,9 +8,11 @@ class CommentForm extends React.Component {
             comment: ''
         };
     }
+
     handleCommentChange(event) {
         this.setState({comment: event.target.value});
     }
+
     render() {
         return <div className="row"><Box
             border={true}
