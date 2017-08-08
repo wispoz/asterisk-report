@@ -62,6 +62,8 @@ class Filter extends React.Component {
                         onFocusChange={this.onFocusChange}
                         focusedInput={focusedInput}
                         startDate={startDate}
+                        endDatePlaceholderText="Конец"
+                        startDatePlaceholderText="Начало"
                         endDate={endDate}
                     />
                 </div>
