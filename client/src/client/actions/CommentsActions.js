@@ -35,7 +35,7 @@ const CommentsActions = {
     },
 
     deleteComment(commentId) {
-        api.deleteNote(commentId)
+        api.deleteComment(commentId)
             .then(() =>
                 this.loadComments()
             )

@@ -3,7 +3,7 @@ import * as repository from '../repositories/CommentsRepository';
 const router = express.Router();
 
 router.get('/index', (req, res) => {
-    repository.listUsers().then(data=>res.send(data));
+    repository.listComments().then(data=>res.send(data));
 });
 
 router.post('/create', (req, res) => {

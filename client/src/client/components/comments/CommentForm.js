@@ -1,18 +1,25 @@
 import React from 'react';
 import {CustomBox as Box} from 'adminlte-reactjs';
-
+import CommentsActions from '../../actions/CommentsActions';
 class CommentForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             comment: ''
         };
+        this.onCommentAdd = this.onCommentAdd.bind(this);
     }
 
     handleCommentChange(event) {
         this.setState({comment: event.target.value});
     }
-
+    onCommentAdd(){
+        const Comment  = {
+            comment: this.state.comment
+        };
+        CommentsActions.createComment(Comment);
+        this.setState({comment: ""});
+    }
     render() {
         return <div className="row"><Box
             border={true}
@@ -34,7 +41,7 @@ class CommentForm extends React.Component {
                             <input
                                 value="Добавить"
                                 type="button"
-                                onClick={this.handleCommentChange.bind(this)}
+                                onClick={this.onCommentAdd.bind(this)}
                                 className="btn btn-success"
                             />
                         </div>

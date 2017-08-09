@@ -32,7 +32,7 @@ class GroupsForm extends React.Component {
             <div className="box-footer">
                 <form action="#" method="post">
                     <div className="row">
-                        <div className="col-lg-11">
+                        <div className="col-sm-10">
                             <input
                                 type="text"
                                 className="form-control comment"
@@ -40,7 +40,7 @@ class GroupsForm extends React.Component {
                                 onChange={this.handleCommentChange.bind(this)}
                             />
                         </div>
-                        <div className="col-lg-1">
+                        <div className="col-sm-2">
                             <input
                                 value="Добавить"
                                 type="button"

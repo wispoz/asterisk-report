@@ -1,57 +1,28 @@
 import React from 'react';
 import {CustomBox as Box} from 'adminlte-reactjs';
-import CommentsStore from '../../stores/CommentsStore';
-import CommentsActions from '../../actions/CommentsActions';
-
-function getStateFromFlux() {
-    return {
-        isLoading: CommentsStore.isLoading(),
-        comments: CommentsStore.getComments()
-    };
-
-}
-
-
+import Masonry from 'react-masonry-component';
+import CommentsTableRow from "./CommentsTableRow";
 class CommentsTable extends React.Component {
     constructor(props) {
         super(props);
-        this.state = getStateFromFlux();
-        this._onChange = this._onChange.bind(this);
     }
-
-    componentWillMount() {
-        CommentsActions.loadComments();
-    }
-
-    componentDidMount() {
-        CommentsStore.addChangeListener(this._onChange);
-    }
-
-    componentWillUnmount() {
-        CommentsStore.removeChangeListener(this._onChange);
-    }
-
     render() {
+        const {comments} = this.props;
+        const masonryOptions = {
+            itemSelector: '.Group',
+            columnWidth: 300,
+            gutter: 10,
+            isFitWidth: true
+        };
         return <div className="row"><Box
             border={true}
             width="12"
             theme="box-default"
             headerMarkup={<i className="fa fa-comments-o"></i>}>
-            <table className="table table-bordered">
-                <tbody>
-                {this.state.comments.map(comment =>
-                    <tr key={comment.id}>
-                        <td>{comment.comment}</td>
-                        <td></td>
-                    </tr>)}
-                </tbody>
-
-            </table>
+            <Masonry options={masonryOptions}>
+                {comments.map((comment) => <CommentsTableRow key={comment.id} comment={comment}/>)}
+            </Masonry>
         </Box></div>;
-    }
-
-    _onChange() {
-        this.setState(getStateFromFlux());
     }
 }
 
