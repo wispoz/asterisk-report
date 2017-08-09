@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 class Clock extends React.Component {
     constructor(props) {
@@ -27,9 +27,7 @@ class Clock extends React.Component {
         return (
             <div className="pull-left info">
                 <p>Alexander Pierce</p>
-                <a href="#"><i
-                    className="fa fa-circle text-success"></i> {this.state.date.toLocaleTimeString()} {this.state.date.getDate()}.{this.state.date.getMonth()}.{this.state.date.getFullYear()}
-                </a>
+                <i className="fa fa-circle text-success"></i> {this.state.date.toLocaleTimeString()} {this.state.date.getDate()}.{this.state.date.getMonth()}.{this.state.date.getFullYear()}
             </div>
         );
     }

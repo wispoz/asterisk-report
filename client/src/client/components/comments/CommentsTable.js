@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {CustomBox as Box, Callout} from 'adminlte-reactjs';
+import React from 'react';
+import {CustomBox as Box} from 'adminlte-reactjs';
 import CommentsStore from '../../stores/CommentsStore';
 import CommentsActions from '../../actions/CommentsActions';
 
@@ -12,7 +12,7 @@ function getStateFromFlux() {
 }
 
 
-class CommentsGrid extends React.Component {
+class CommentsTable extends React.Component {
     constructor(props) {
         super(props);
         this.state = getStateFromFlux();
@@ -55,4 +55,4 @@ class CommentsGrid extends React.Component {
     }
 }
 
-export default CommentsGrid;
+export default CommentsTable;

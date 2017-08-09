@@ -10,7 +10,7 @@ class NavigationMenu extends React.Component {
             <section className="sidebar">
                 <div className="user-panel">
                     <div className="pull-left image">
-                        <img src="dist/img/user2-160x160.jpg" className="img-circle" alt="User Image"/>
+                        <img src="dist/img/user2-160x160.jpg" alt="" className="img-circle"/>
                     </div>
                     <Clock/>
                 </div>

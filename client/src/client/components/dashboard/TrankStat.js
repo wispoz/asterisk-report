@@ -1,11 +1,7 @@
 import React from 'react';
-import {CustomBox as Box, Callout} from 'adminlte-reactjs';
+import {CustomBox as Box} from 'adminlte-reactjs';
 
 class TrankStat extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <Box
             border={true}

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import CommentsGrid from '../components/comments/CommentsGrid';
+import React from 'react';
+import CommentsTable from '../components/comments/CommentsTable';
 import CommentForm from '../components/comments/CommentForm';
 import Layout from './Layout';
 
@@ -8,7 +8,7 @@ class Comments extends React.Component {
         return <Layout>
             <section className="content">
                 <CommentForm/>
-                <CommentsGrid/>
+                <CommentsTable/>
             </section>
         </Layout>;
     }

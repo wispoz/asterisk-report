@@ -5,26 +5,25 @@ import AppConstants from '../constants/AppConstants';
 
 const CHANGE_EVENT = 'change';
 
-let _users = [];
+let _groups = [];
 let _loadingError = null;
 let _isLoading = true;
 
-function formatUser(user) {
+function formatGroup(group) {
     return {
-        id: user.id,
-        username: user.username,
-        last_name: user.last_name,
-        phone: user.phone
+        id: group.id,
+        name: group.name,
+        description: group.description
     };
 }
 
-const UsersStore = Object.assign({}, EventEmitter.prototype, {
+const GroupsStore = Object.assign({}, EventEmitter.prototype, {
     isLoading() {
         return _isLoading;
     },
 
-    getUsers() {
-        return _users;
+    getGroups() {
+        return _groups;
     },
 
     emitChange: function () {
@@ -42,22 +41,23 @@ const UsersStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function (action) {
     switch (action.type) {
-        case AppConstants.LOAD_USERS_REQUEST: {
+        case AppConstants.LOAD_GROUPS_REQUEST: {
             _isLoading = true;
-            UsersStore.emitChange();
+            GroupsStore.emitChange();
             break;
         }
-        case AppConstants.LOAD_USERS_SUCCESS: {
-            _isLoading = false;
-            _users = action.users.map(formatUser);
-            _loadingError = null;
-            UsersStore.emitChange();
-            break;
-        }
-        case AppConstants.LOAD_USERS_FAIL: {
-            _loadingError = action.error;
 
-            UsersStore.emitChange();
+        case AppConstants.LOAD_GROUPS_SUCCESS: {
+            _isLoading = false;
+            _groups = action.groups.map(formatGroup);
+            _loadingError = null;
+            GroupsStore.emitChange();
+            break;
+        }
+
+        case AppConstants.LOAD_GROUPS_FAIL: {
+            _loadingError = action.error;
+            GroupsStore.emitChange();
             break;
         }
 
@@ -66,4 +66,4 @@ AppDispatcher.register(function (action) {
         }
     }
 });
-export default UsersStore;
+export default GroupsStore;

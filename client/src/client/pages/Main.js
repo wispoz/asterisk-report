@@ -1,15 +1,20 @@
-import React, {Component} from 'react';
-import {HeaderBar, PieChart} from 'adminlte-reactjs';
+import React from 'react';
 import Layout from '../pages/Layout';
 import Filter from '../components/dashboard/Filter';
 import TrankStat from '../components/dashboard/TrankStat';
 import {RadialChart} from 'react-vis';
 
+
 class Main extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
+        const {groups} = this.props;
         return <Layout>
             <section className="content">
-                <Filter/>
+                <Filter groups={groups}/>
                 <div className="row">
                     <div className="col-lg-6">
                         <TrankStat/>

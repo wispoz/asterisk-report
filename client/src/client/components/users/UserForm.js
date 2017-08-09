@@ -1,25 +1,33 @@
 import React from 'react';
-import {CustomBox as Box, Callout} from 'adminlte-reactjs';
+import {CustomBox as Box} from 'adminlte-reactjs';
 import i18n from './i18n.json';
 
-const UserForm = React.createClass({
-    getInitialState() {
-        return {
+
+class UserForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
             "username": "",
             "last_name": "",
             "phone": ""
         };
-    },
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
+        this.handleLastNameChange = this.handleLastNameChange.bind(this);
+        this.handlePhoneChange = this.handlePhoneChange.bind(this);
+        this.handleUserAdd = this.handleUserAdd.bind(this);
+    }
+
     handleUsernameChange(event) {
         this.setState({username: event.target.value});
-    },
+    }
 
     handleLastNameChange(event) {
         this.setState({last_name: event.target.value});
-    },
+    }
+
     handlePhoneChange(event) {
         this.setState({phone: event.target.value});
-    },
+    }
 
     handleUserAdd() {
         const newUser = {
@@ -33,15 +41,14 @@ const UserForm = React.createClass({
             "last_name": "",
             "phone": ""
         });
-    },
+    }
+
     render() {
-        const {ru} = i18n;
-        const i18N = ru, boxTools = ['expand'];
+        const {ru} = i18n,
+            i18N = ru;
         return <Box
             border={true}
-            boxTools={boxTools}
             width="12"
-            //collapsed={true}
             theme="box-default"
             title={i18N.header}
             headerMarkup={<i className="fa fa-user"></i>}>
@@ -52,7 +59,7 @@ const UserForm = React.createClass({
                             <input
                                 type="text" className="form-control input-sm"
                                 value={this.state.username}
-                                onChange={this.handleUsernameChange}
+                                onChange={this.handleUsernameChange.bind(this)}
                                 placeholder={i18N.form.username.placeholder}
                             />
                         </div>
@@ -60,7 +67,7 @@ const UserForm = React.createClass({
                             <input
                                 type="text" className="form-control input-sm"
                                 value={this.state.last_name}
-                                onChange={this.handleLastNameChange}
+                                onChange={this.handleLastNameChange.bind(this)}
                                 placeholder={i18N.form.last_name.placeholder}
                             />
                         </div>
@@ -68,7 +75,7 @@ const UserForm = React.createClass({
                             <input
                                 type="text" className="form-control input-sm"
                                 value={this.state.phone}
-                                onChange={this.handlePhoneChange}
+                                onChange={this.handlePhoneChange.bind(this)}
                                 placeholder={i18N.form.phone.placeholder}
                             />
                         </div>
@@ -76,7 +83,7 @@ const UserForm = React.createClass({
                             <input
                                 value={i18N.add}
                                 type="button"
-                                onClick={this.handleUserAdd}
+                                onClick={this.handleUserAdd.bind(this)}
                                 className="btn btn-success"
                             />
                         </div>
@@ -86,7 +93,6 @@ const UserForm = React.createClass({
 
         </Box>;
     }
-});
-
+}
 
 export default UserForm;

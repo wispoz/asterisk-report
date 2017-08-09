@@ -1,16 +1,26 @@
 import React from 'react';
 import {CustomBox as Box} from 'adminlte-reactjs';
+import GroupsActions from '../../actions/GroupsActions';
 
-class CommentForm extends React.Component {
+class GroupsForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: ''
+            name: ''
         };
+        this.onGroupAdd = this.onGroupAdd.bind(this);
     }
 
     handleCommentChange(event) {
-        this.setState({comment: event.target.value});
+        this.setState({name: event.target.value});
+    }
+
+    onGroupAdd() {
+        const Group = {
+            name: this.state.name
+        };
+        GroupsActions.createGroup(Group);
+        this.setState({"name": ""});
     }
 
     render() {
@@ -22,19 +32,19 @@ class CommentForm extends React.Component {
             <div className="box-footer">
                 <form action="#" method="post">
                     <div className="row">
-                        <div className="col-lg-9">
+                        <div className="col-lg-11">
                             <input
                                 type="text"
                                 className="form-control comment"
-                                value={this.state.comment}
+                                value={this.state.name}
                                 onChange={this.handleCommentChange.bind(this)}
                             />
                         </div>
-                        <div className="col-lg-3">
+                        <div className="col-lg-1">
                             <input
                                 value="Добавить"
                                 type="button"
-                                onClick={this.handleCommentChange.bind(this)}
+                                onClick={this.onGroupAdd.bind(this)}
                                 className="btn btn-success"
                             />
                         </div>
@@ -45,4 +55,4 @@ class CommentForm extends React.Component {
     }
 }
 
-export default CommentForm;
+export default GroupsForm;

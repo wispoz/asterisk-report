@@ -1,18 +1,5 @@
-import React, {Component} from 'react';
-import {
-    HeaderBar,
-    ContainerOne,
-    ControlPanel,
-    AreaChart,
-    ContainerTwo,
-    ContainerThree,
-    ContainerFour,
-    ContainerFive,
-    ContainerSix,
-    ContainerSeven,
-    DonutChart,
-    WorldMap, ChatBox, Conversations, Contacts, Box
-} from 'adminlte-reactjs';
+import React from 'react';
+import {HeaderBar} from 'adminlte-reactjs';
 import NavigationMenu from '../components/NavigationMenu';
 
 class Comments extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {CustomBox as Box, Callout} from 'adminlte-reactjs';
+import {CustomBox as Box} from 'adminlte-reactjs';
 import {DateRangePicker} from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-select/dist/react-select.css';
@@ -11,7 +11,7 @@ class Filter extends React.Component {
         this.state = {
             focused: props.autoFocus,
             date: props.initialDate,
-            trank: "one"
+            trank: 1
         };
 
         this.onDatesChange = this.onDatesChange.bind(this);
@@ -33,14 +33,8 @@ class Filter extends React.Component {
 
     render() {
         const {focusedInput, startDate, endDate} = this.state;
-        const options = [
-            {value: 'one', label: 'One'},
-            {value: 'two', label: 'Two'},
-            {value: 'two1', label: 'Two1'},
-            {value: 'two2', label: 'Two2'},
-            {value: 'two3', label: 'Two3'},
-            {value: 'two4', label: 'Two4'}
-        ];
+        const {options} = this.state;
+        const {groups} = this.props;
         return <div className="row"><Box
             border={true}
             width="12"
@@ -50,14 +44,15 @@ class Filter extends React.Component {
                 <div className="col-lg-4  col-sm-4">
                     <Select
                         name="form-field-name"
+                        labelKey="name"
+                        valueKey="id"
                         value={this.state.trank}
-                        options={options}
+                        options={groups}
                         onChange={this.onChange.bind(this)}
                     />
                 </div>
                 <div className="col-lg-4 col-sm-4">
                     <DateRangePicker
-                        id="date_input"
                         onDatesChange={this.onDatesChange}
                         onFocusChange={this.onFocusChange}
                         focusedInput={focusedInput}
@@ -68,9 +63,8 @@ class Filter extends React.Component {
                     />
                 </div>
             </div>
-
-
-        </Box></div>;
+        </Box>
+        </div>;
     }
 }
 

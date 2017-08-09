@@ -10,12 +10,11 @@ export function listUsers() {
 }
 
 export function deleteUser(userId) {
-    console.log(userId);
     return User.find({
         where: {
             id: userId
         }
-    }).then((user)=>user.destroy());
+    }).then((user) => user.destroy());
 }
 
 export function updateUser() {

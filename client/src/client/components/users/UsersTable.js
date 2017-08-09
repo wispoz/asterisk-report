@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
-import ReactDataGrid from 'react-data-grid';
-import {CustomBox as Box, Callout} from 'adminlte-reactjs';
+import React from 'react';
+import {CustomBox as Box} from 'adminlte-reactjs';
 import UserForm from './UserForm';
 import UserStore from '../../stores/UserStore';
 import UsersActions from '../../actions/UsersActions';
-import createReactClass from 'create-react-class';
 import i18n from './i18n.json';
 import Masonry from 'react-masonry-component';
 import User from './User';
@@ -16,30 +14,33 @@ function getStateFromFlux() {
     };
 }
 
+class UsersTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = getStateFromFlux();
+        this._onChange = this._onChange.bind(this);
+    }
 
-const UsersGrid = createReactClass({
-    getInitialState() {
-        return getStateFromFlux();
-    },
     componentWillMount() {
         UsersActions.loadUsers();
-    },
+    }
+
     componentDidMount() {
         UserStore.addChangeListener(this._onChange);
-    },
+    }
 
     componentWillUnmount() {
         UserStore.removeChangeListener(this._onChange);
-    },
+    }
+
     handleUserAdd(userData) {
         UsersActions.createUser(userData);
-    },
+    }
+
     render() {
-        const columns = [{key: 'id', name: 'ID'}, {key: 'username', name: 'Title'}];
         const {users} = this.state;
-        const rowGetter = rowNumber => users[rowNumber];
         const {ru} = i18n;
-        const i18N = ru, boxTools = ['expand'];
+        const i18N = ru;
         const masonryOptions = {
             itemSelector: '.User',
             columnWidth: 300,
@@ -48,7 +49,7 @@ const UsersGrid = createReactClass({
         };
         return <section className="content">
 
-            <div className="row"><UserForm onUserAdd={this.handleUserAdd}/></div>
+            <div className="row"><UserForm onUserAdd={this.handleUserAdd.bind(this)}/></div>
             <div className="row"><Box
                 border={true}
                 width="12"
@@ -58,18 +59,16 @@ const UsersGrid = createReactClass({
                     {users.map(user =>
                         <User theme='bg-aqua'
                               key={user.id}
-                              user={user}
-                              displayName='John Roe'
-                              description='Founder & CEO'
-                              displayPicture='../dist/img/user1-128x128.jpg'
-                              coverPicture='../dist/img/photo4.png'></User>
+                              user={user}></User>
                     )}
                 </Masonry>
             </Box></div>
         </section>;
-    },
+    }
+
     _onChange() {
         this.setState(getStateFromFlux());
     }
-});
-export default UsersGrid;
+}
+
+export default UsersTable;
