@@ -20,6 +20,7 @@ class NavigationMenu extends React.Component {
                     <li><Link to="users" className="fa fa fa-user"> Пользователи</Link></li>
                     <li><Link to="groups" className="fa fa fa-users"> Группы</Link></li>
                     <li><Link to="comments" className="fa fa-comments-o"> Комментарии</Link></li>
+                    <li><Link to="connectors" className="fa fa-database"> Источники данных</Link></li>
                 </ul>
             </section>
         </aside>;

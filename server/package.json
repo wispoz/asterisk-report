@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node_modules/.bin/babel-node app.js"
+    "start": "node_modules/.bin/babel-node app.js",
+    "migration_up": "node_modules/.bin/sequelize db:migrate",
+    "migration_down": "node_modules/.bin/sequelize db:migrate:undo",
+    "migration_create": "node_modules/.bin/sequelize migration:create"
   },
   "keywords": [
     "asterisk",
