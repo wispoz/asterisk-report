@@ -2,6 +2,7 @@ import {port} from './config/appconfig';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
 import userRoutes from './routes/UserRoutes';
 import commentsRoutes from './routes/CommentsRoutes';
 import groupsRoutes from './routes/GroupRoutes';
@@ -10,6 +11,7 @@ import connectorsRoutes from './routes/ConnectorsRoutes';
 const app = express();
 
 app.use(bodyParser.json());
+app.use(fileUpload());
 app.use(cors({origin: '*'}));
 
 app.use('/users', userRoutes);

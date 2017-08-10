@@ -11,16 +11,21 @@ class Filter extends React.Component {
         this.state = {
             focused: props.autoFocus,
             date: props.initialDate,
-            trank: 1
+            trank: 1,
+            group: null
         };
 
         this.onDatesChange = this.onDatesChange.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onGroupChange = this.onGroupChange.bind(this);
     }
 
     onChange(val) {
-        this.setState({"trank": val});
+        this.setState({trank: val});
+    }
+    onGroupChange(val) {
+        this.setState({group: val});
     }
 
     onDatesChange({startDate, endDate}) {
@@ -34,7 +39,7 @@ class Filter extends React.Component {
     render() {
         const {focusedInput, startDate, endDate} = this.state;
         const {options} = this.state;
-        const {groups} = this.props;
+        const {groups,connectors} = this.props;
         return <div className="row"><Box
             border={true}
             width="12"
@@ -49,6 +54,16 @@ class Filter extends React.Component {
                         value={this.state.trank}
                         options={groups}
                         onChange={this.onChange.bind(this)}
+                    />
+                </div>
+                <div className="col-lg-4  col-sm-4">
+                    <Select
+                        name="form-field-name"
+                        labelKey="name"
+                        valueKey="id"
+                        value={this.state.group}
+                        options={connectors}
+                        onChange={this.onGroupChange}
                     />
                 </div>
                 <div className="col-lg-4 col-sm-4">

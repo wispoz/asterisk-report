@@ -1,8 +1,4 @@
 import React from 'react';
-import {deepOrange500} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import {Toggle, TextField, Dialog, RaisedButton, Divider, Snackbar, LinearProgress} from 'material-ui';
 import {List, ListItem} from 'material-ui/List';
 import ConnectorsActions from '../../actions/ConnectorsActions';
@@ -25,6 +21,7 @@ class ConnectorsDialog extends React.Component {
         this.handlerSnackClose = this.handlerSnackClose.bind(this);
         this.onConnectorAdd = this.onConnectorAdd.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
+        this._onChange = this._onChange.bind(this);
         this.state = {
             open: false,
             snackOpen: false,
@@ -40,8 +37,9 @@ class ConnectorsDialog extends React.Component {
         };
 
     }
+
     onConnectorAdd() {
-        this.setState({showLoading: true});
+        this.setState({showLoading: true, open: false});
         const Connector = {
             host: this.state.host,
             port: this.state.port,
@@ -52,6 +50,21 @@ class ConnectorsDialog extends React.Component {
             isPeriodic: this.state.isPeriodic
         };
         ConnectorsActions.createConnector(Connector);
+    }
+
+    _onChange() {
+        this.setState({
+            open: false,
+            snackOpen: false,
+            showLoading: false,
+            host: '127.0.0.1',
+            port: 3306,
+            login: '',
+            name: '',
+            database: 'asterisk',
+            password: '',
+            isPeriodic: true
+        });
     }
 
     _onConnectionTest() {
@@ -65,10 +78,12 @@ class ConnectorsDialog extends React.Component {
 
     componentDidMount() {
         ConnectorsStore.addConnectionTestListener(this._onConnectionTest);
+        ConnectorsStore.addChangeListener(this._onChange);
     }
 
     componentWillUnmount() {
         ConnectorsStore.removeConnectionTestListener(this._onConnectionTest);
+        ConnectorsStore.removeChangeListener(this._onChange);
     }
 
     onConnectionTest() {
@@ -96,6 +111,7 @@ class ConnectorsDialog extends React.Component {
             database: e.target.value
         });
     }
+
     onNameChange(e) {
         this.setState({
             name: e.target.value
@@ -129,12 +145,14 @@ class ConnectorsDialog extends React.Component {
     onShowSnack() {
         this.setState({showLoading: true});
     }
+
     handlerSnackClose() {
         this.setState({
             snackOpen: false,
-            snackText:'Успешно',
+            snackText: 'Успешно',
         });
     }
+
     handleRequestClose() {
         this.setState({
             open: false,
@@ -158,77 +176,75 @@ class ConnectorsDialog extends React.Component {
 
     render() {
         const {muiTheme} = this.props;
-        return <MuiThemeProvider muiTheme={muiTheme}>
-            <div>
+        return <div>
 
-                <Dialog
-                    open={this.state.open}
-                    title="Добавление сервера астериска"
-                    onRequestClose={this.handleRequestClose}
-                >
-                    <div>
-                        <List><TextField
-                            hintText="Название соединения"
-                            value={this.state.name}
-                            onChange={this.onNameChange}
-                            floatingLabelText="Название соединения"
-                        /></List>
+            <Dialog
+                open={this.state.open}
+                title="Добавление сервера астериска"
+                onRequestClose={this.handleRequestClose}
+            >
+                <div>
+                    <List><TextField
+                        hintText="Название соединения"
+                        value={this.state.name}
+                        onChange={this.onNameChange}
+                        floatingLabelText="Название соединения"
+                    /></List>
 
-                        <List>
-                            <TextField
-                                hintText="Адрес сервера"
-                                value={this.state.host}
-                                onChange={this.onHostChange}
-                                floatingLabelText="Адрес сервера"
-                            />
-                            <TextField
-                                hintText="Порт"
-                                value={this.state.port}
-                                onChange={this.onPortChange}
-                                floatingLabelText="Порт"
-                            />
-                            <TextField
-                                hintText="База"
-                                value={this.state.database}
-                                onChange={this.onDatabaseChange}
-                                floatingLabelText="База"
-                            />
-                        </List>
-                        <List>
-                            <TextField hintText="Логин" onChange={this.onLoginChange} value={this.state.login}
-                                       floatingLabelText="Логин"/>
-                            <TextField hintText="Пароль" onChange={this.onPasswordChange} value={this.state.password}
-                                       floatingLabelText="Пароль" type="password"/>
-                        </List>
-                        <Divider/>
-                        <List>
-                            <ListItem primaryText="Messages" onChange={this.onPeriodicChange}
-                                      value={this.state.isPeriodic} rightToggle={<Toggle/>}/>
-                        </List>
-                        <List>
-                            <div>
+                    <List>
+                        <TextField
+                            hintText="Адрес сервера"
+                            value={this.state.host}
+                            onChange={this.onHostChange}
+                            floatingLabelText="Адрес сервера"
+                        />
+                        <TextField
+                            hintText="Порт"
+                            value={this.state.port}
+                            onChange={this.onPortChange}
+                            floatingLabelText="Порт"
+                        />
+                        <TextField
+                            hintText="База"
+                            value={this.state.database}
+                            onChange={this.onDatabaseChange}
+                            floatingLabelText="База"
+                        />
+                    </List>
+                    <List>
+                        <TextField hintText="Логин" onChange={this.onLoginChange} value={this.state.login}
+                                   floatingLabelText="Логин"/>
+                        <TextField hintText="Пароль" onChange={this.onPasswordChange} value={this.state.password}
+                                   floatingLabelText="Пароль" type="password"/>
+                    </List>
+                    <Divider/>
+                    <List>
+                        <ListItem primaryText="Messages" onChange={this.onPeriodicChange}
+                                  value={this.state.isPeriodic} rightToggle={<Toggle/>}/>
+                    </List>
+                    <List>
+                        <div>
 
-                                <RaisedButton label="Тест" onTouchTap={this.onConnectionTest}/>
-                                <RaisedButton label="Сохранить"  onTouchTap={this.onConnectorAdd}/>
-                            </div>
-                            {this.state.showLoading ? <LinearProgress mode="indeterminate"/> : ''}
-                        </List>
+                            <RaisedButton label="Тест" onTouchTap={this.onConnectionTest}/>
+                            <RaisedButton label="Сохранить" onTouchTap={this.onConnectorAdd}/>
+                        </div>
+                        {this.state.showLoading ? <LinearProgress mode="indeterminate"/> : ''}
+                    </List>
 
-                    </div>
-                </Dialog>
-                <RaisedButton
-                    label="Добавить"
-                    secondary={true}
-                    onTouchTap={this.handleTouchTap}
-                />
-                <Snackbar
-                    open={this.state.snackOpen}
-                    message={this.state.snackText}
-                    autoHideDuration={2000}
-                    onRequestClose={this.handlerSnackClose}
-                />
-            </div>
-        </MuiThemeProvider>;
+                </div>
+            </Dialog>
+            <RaisedButton
+                label="Добавить"
+                secondary={true}
+                onTouchTap={this.handleTouchTap}
+            />
+            <Snackbar
+                open={this.state.snackOpen}
+                message={this.state.snackText}
+                autoHideDuration={2000}
+                onRequestClose={this.handlerSnackClose}
+            />
+        </div>;
     }
 }
 

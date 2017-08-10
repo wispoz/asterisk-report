@@ -6,9 +6,17 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Toggle, TextField, Dialog, RaisedButton, Divider,Snackbar,LinearProgress} from 'material-ui';
+import {Toggle, TextField, Dialog, RaisedButton, Divider, Snackbar, LinearProgress} from 'material-ui';
 import {List, ListItem} from 'material-ui/List';
 import ConnectorsDialog from './ConnectorsDialog';
+import {
+    Table,
+    TableBody,
+    TableHeader,
+    TableHeaderColumn,
+    TableRow
+} from 'material-ui/Table';
+
 injectTapEventPlugin();
 const styles = {
     container: {
@@ -29,6 +37,7 @@ class ConnectorsTable extends React.Component {
         super(props);
 
     }
+
     render() {
 
         const {connectors} = this.props;
@@ -38,7 +47,7 @@ class ConnectorsTable extends React.Component {
             gutter: 10,
             isFitWidth: true
         };
-        console.log(connectors);
+        console.log();
         return <div className="row">
 
             <Box
@@ -46,11 +55,23 @@ class ConnectorsTable extends React.Component {
                 width="12"
                 theme="box-default"
                 headerMarkup={<i className="fa fa-comments-o"></i>}>
-                    <ConnectorsDialog muiTheme={muiTheme} />
-
-                <Masonry options={masonryOptions}>
-                    {connectors.map((connector) => <ConnectorsTableRow key={connector.id} connector={connector}/>)}
-                </Masonry>
+                <MuiThemeProvider muiTheme={muiTheme}>
+                    <div>
+                    <ConnectorsDialog muiTheme={muiTheme}/>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHeaderColumn>ID</TableHeaderColumn>
+                                <TableHeaderColumn>Name</TableHeaderColumn>
+                                <TableHeaderColumn>Status</TableHeaderColumn>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {connectors.map((connector) => <ConnectorsTableRow key={connector.id} connector={connector}/>)}
+                        </TableBody>
+                    </Table>
+                    </div>
+                </MuiThemeProvider>
             </Box></div>;
     }
 }

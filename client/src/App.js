@@ -65,7 +65,7 @@ class App extends React.Component {
         return (
             <Router>
                 <div>
-                    <Route exact path="/" render={(props) => <Main groups={groups} {...props}/>}/>
+                    <Route exact path="/" render={(props) => <Main groups={groups} connectors={connectors} {...props}/>}/>
                     <Route exact path="/users" component={Users}/>
                     <Route exact path="/comments" render={(props) => <Comments comments={comments} {...props}/>}/>
                     <Route exact path="/groups" render={(props) => <Groups groups={groups} {...props}/>}/>

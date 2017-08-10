@@ -11,10 +11,10 @@ class Main extends React.Component {
     }
 
     render() {
-        const {groups} = this.props;
+        const {groups,connectors} = this.props;
         return <Layout>
             <section className="content">
-                <Filter groups={groups}/>
+                <Filter groups={groups} connectors={connectors}/>
                 <div className="row">
                     <div className="col-lg-6">
                         <TrankStat/>
