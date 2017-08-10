@@ -7,20 +7,30 @@
 import React from 'react';
 import './Comment.css';
 import CommentsActions from '../../actions/CommentsActions';
+import {
+    TableRow,
+    TableRowColumn
+} from 'material-ui/Table';
+
 class CommentsTableRow extends React.Component {
     constructor(props) {
         super(props);
         this.onDelete = this.onDelete.bind(this);
     }
+
     onDelete() {
         const {comment} = this.props;
         CommentsActions.deleteComment(comment.id);
     }
+
     render() {
         const {comment} = this.props;
-        return <div className="Comment col-md-4">
-            <span className='Comment__del-icon' onClick={this.onDelete.bind(this)}> × </span>
-            {comment.comment}</div>;
+        return <TableRow>
+            <TableRowColumn>{comment.id}</TableRowColumn>
+            <TableRowColumn>{comment.comment}</TableRowColumn>
+            <TableRowColumn><span onClick={this.onDelete.bind(this)}> × </span> </TableRowColumn>
+        </TableRow>;
     }
 }
+
 export default CommentsTableRow;

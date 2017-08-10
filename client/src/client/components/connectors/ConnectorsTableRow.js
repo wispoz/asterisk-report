@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentsActions from '../../actions/CommentsActions';
+import ConnectorsActions from '../../actions/ConnectorsActions';
 class ConnectorsTableRow extends React.Component {
     constructor(props) {
         super(props);
@@ -7,13 +7,13 @@ class ConnectorsTableRow extends React.Component {
     }
     onDelete() {
         const {connector} = this.props;
-        CommentsActions.deleteComment(connector.id);
+        ConnectorsActions.deleteConnector(connector.id);
     }
     render() {
         const {connector} = this.props;
         return <div className="Connector col-md-4">
             <span className='Connector__del-icon' onClick={this.onDelete.bind(this)}> × </span>
-            {connector.name}</div>;
+            {connector.login}</div>;
     }
 }
 export default ConnectorsTableRow;

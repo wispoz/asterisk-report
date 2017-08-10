@@ -13,7 +13,7 @@ const ConnectorsActions = {
             .then(({data}) =>
                 AppDispatcher.dispatch({
                     type: Constants.LOAD_CONNECTORS_SUCCESS,
-                    comments: data
+                    connectors: data
                 })
             )
             .catch(err =>
@@ -27,7 +27,7 @@ const ConnectorsActions = {
     createConnector(connector) {
         api.createConnector(connector)
             .then(() =>
-                this.loadComments()
+                this.loadConnectors()
             )
             .catch(err =>
                 console.error(err)
@@ -41,6 +41,30 @@ const ConnectorsActions = {
             )
             .catch(err =>
                 console.error(err)
+            );
+    },
+    checkConnection(options) {
+        api.checkConnection(options)
+            .then(({data}) => {
+                    const {success} = data;
+                    if(success) {
+                        AppDispatcher.dispatch({
+                            type: Constants.CHECK_CONNECTORS_SUCCESS,
+                            data: data
+                        });
+                    }else {
+                        AppDispatcher.dispatch({
+                            type: Constants.CHECK_CONNECTORS_FAIL,
+                            data: data
+                        });
+                    }
+                }
+            )
+            .catch(err =>
+                AppDispatcher.dispatch({
+                    type: Constants.CHECK_CONNECTORS_FAIL,
+                    error: err
+                })
             );
     }
 };

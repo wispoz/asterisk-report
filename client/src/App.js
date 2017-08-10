@@ -61,6 +61,7 @@ class App extends React.Component {
 
     render() {
         const {groups, comments,connectors} = this.state;
+        console.log(connectors);
         return (
             <Router>
                 <div>

@@ -12,5 +12,9 @@ export default {
 
     deleteConnector(connectorId) {
         return axios.delete(`${apiPrefix}/connectors/delete/${connectorId}`);
+    },
+
+    checkConnection(options) {
+        return axios.post(`${apiPrefix}/connectors/check/`,options);
     }
 };
